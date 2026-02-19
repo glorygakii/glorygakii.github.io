@@ -1,130 +1,647 @@
-    <!DOCTYPE html><html lang="en">
+
+    <!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Glory | Data Analytics Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glory Gakii Mbiti | Data Scientist</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0b1f3a;
+      --teal: #0d9488;
+      --teal-light: #14b8a6;
+      --sand: #f5f0e8;
+      --sand-dark: #e8e0d0;
+      --text: #1a2e45;
+      --muted: #64748b;
+      --white: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--sand);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(11, 31, 58, 0.96);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--teal-light);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal-light); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%);
+      bottom: 50px; left: 200px;
+      animation: pulse 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.7; }
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(13,148,136,0.2);
+      color: var(--teal-light);
+      border: 1px solid rgba(13,148,136,0.4);
+      padding: 0.35rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      animation: fadeUp 0.8s ease 0.15s both;
+    }
+
+    .hero h1 span { color: var(--teal-light); font-style: italic; }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.8s ease 0.45s both;
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: white;
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); }
+
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.85);
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--teal-light); color: var(--teal-light); transform: translateY(-2px); }
+
+    .hero-visual {
+      position: relative; z-index: 2;
+      display: flex; justify-content: center; align-items: center;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      width: 340px;
+      backdrop-filter: blur(10px);
+    }
+
+    .profile-img-wrapper {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 4px solid var(--teal);
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(13,148,136,0.3);
+      margin: 0 auto 1.5rem;
+    }
+
+    .profile-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .stat-item {
+      background: rgba(13,148,136,0.1);
+      border: 1px solid rgba(13,148,136,0.2);
+      border-radius: 8px;
+      padding: 1.2rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--teal-light);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.3rem;
+    }
+
+    .hero-card-title {
+      font-family: 'DM Serif Display', serif;
+      color: white;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      opacity: 0.7;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 4rem; }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-title span { color: var(--teal); font-style: italic; }
+
+    /* ── ABOUT ── */
+    .about { background: var(--white); }
+
+    .about-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .skills-list {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;
+    }
+
+    .skill-tag {
+      background: var(--sand);
+      border: 1px solid var(--sand-dark);
+      color: var(--text);
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* ── PROJECTS ── */
+    .projects { background: var(--sand); }
+    .projects-inner { max-width: 1100px; margin: 0 auto; }
+
+    .projects-header { margin-bottom: 3.5rem; }
+
+    .project-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.8rem; }
+
+    .project-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--sand-dark);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(11,31,58,0.12); }
+
+    .card-top {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-top.sql { background: linear-gradient(135deg, #0b1f3a 0%, #1e3a5f 100%); }
+    .card-top.excel { background: linear-gradient(135deg, #064e3b 0%, #065f46 100%); }
+    .card-top.powerbi { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); }
+
+    .card-top::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.08), transparent 60%);
+    }
+
+    .card-icon { position: relative; z-index: 1; font-size: 3rem; }
+
+    .card-tool-badge {
+      position: absolute; bottom: 12px; right: 12px; z-index: 1;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 2rem;
+    }
+
+    .card-body { padding: 1.8rem; flex: 1; display: flex; flex-direction: column; }
+
+    .card-phase {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.6rem;
+    }
+
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .card-footer {
+      padding: 1rem 1.8rem 1.5rem;
+      border-top: 1px solid var(--sand-dark);
+      display: flex; gap: 0.6rem; flex-wrap: wrap;
+    }
+
+    .tag {
+      background: var(--sand);
+      color: var(--text);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 2rem;
+      font-weight: 500;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--navy);
+      text-align: center;
+    }
+
+    .contact .section-title { color: var(--white); }
+    .contact .section-label { color: var(--teal-light); }
+
+    .contact-sub {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .contact-links { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+
+    .contact-link {
+      display: flex; align-items: center; gap: 0.6rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.85);
+      padding: 0.85rem 1.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .contact-link:hover { background: rgba(13,148,136,0.2); border-color: var(--teal); color: white; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060f1e;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      padding: 1.8rem;
+      font-size: 0.85rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; text-align: center; }
+      .hero-sub { margin: 0 auto 2rem; }
+      .hero-btns { justify-content: center; }
+      .hero-visual { display: none; }
+      section { padding: 4rem 2rem; }
+      .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .project-cards { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans"><!-- Hero Section -->
-<section class="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-white">
-    <h1 class="text-5xl font-bold mb-4">Glory</h1>
-    <p class="text-xl text-gray-600 max-w-2xl">
-        Data Analyst focused on transforming complex datasets into strategic insights.
-        Experienced in SQL, Python, Excel, and Power BI with a strong foundation in
-        statistical analysis and business decision-making.
-    </p>
+<body>
 
-    <div class="mt-8 flex gap-4">
-        <a href="#projects" class="bg-black text-white px-6 py-3 rounded-2xl shadow hover:opacity-90 transition">
-            View Projects
-        </a>
-        <a href="#contact" class="border border-black px-6 py-3 rounded-2xl hover:bg-black hover:text-white transition">
-            Contact Me
-        </a>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Glory Gakii Mbiti</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">Data Scientist</span>
+      <h1>Turning data into<br><span>meaningful stories</span></h1>
+      <p class="hero-sub">
+        I analyse complex datasets and build dashboards that drive real decisions —
+        from raw SQL queries to polished Power BI reports.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Get In Touch</a>
+      </div>
     </div>
-
-    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-        <div>
-            <p class="text-3xl font-bold">60K+</p>
-            <p class="text-gray-500">Records Analyzed</p>
+    <div class="hero-visual">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <div class="profile-img-wrapper">
+          <img src="profile.png" alt="Glory Gakii Mbiti" />
         </div>
-        <div>
-            <p class="text-3xl font-bold">4</p>
-            <p class="text-gray-500">Analytics Tools Integrated</p>
+        <div class="hero-card">
+          <p class="hero-card-title">Aqua Ndogo Project</p>
+          <div class="stat-grid">
+          <div class="stat-item">
+            <span class="stat-num">60K</span>
+            <span class="stat-label">Records Analysed</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Tools Used</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">9</span>
+            <span class="stat-label">Project Phases</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">1</span>
+            <span class="stat-label">Water Crisis Solved</span>
+          </div>
         </div>
-        <div>
-            <p class="text-3xl font-bold">2</p>
-            <p class="text-gray-500">End-to-End Case Studies</p>
         </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- Projects Section -->
-<section id="projects" class="py-20 px-6">
-    <h2 class="text-4xl font-bold text-center mb-12">Featured Work</h2>
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div>
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Data analyst with a passion for <span>impact</span></h2>
+      </div>
+      <div class="about-text">
+        <p>
+          My name is Glory Gakii Mbiti. I'm based in Kwale County, Kenya, and I hold a Bachelor's degree in Economics.
+          I got into data science because of a simple but powerful realisation — the work I was already doing in HR relied heavily on numbers, and I wanted to get much better at using them.
+        </p>
+        <p>
+          In my HR and administration role, I worked on things like payroll, hiring processes, and staff engagement. Over time I noticed that small changes, backed by careful analysis, made a real difference. Payroll errors dropped by 17%, hiring took 23% less time, and employee engagement improved by 13%. None of that happened by chance. It happened because I paid attention to the data. That experience made me want to go deeper, so I enrolled in formal data science training.
+        </p>
+        <p>
+          Since then I have been learning SQL, Python, Power BI, and Excel. I have worked on real projects involving large datasets, built dashboards from scratch, and written queries across databases with over 60,000 records. I am currently looking for a role, internship, or freelance opportunity where I can keep growing and contribute meaningfully.
+        </p>
+        <p style="color: var(--teal); font-style: italic; font-size: 0.95rem;">
+          When I am not working with data, I play handball or listen to music. Both require focus and rhythm, which honestly is not that different from good data work.
+        </p>
+        <div class="skills-list">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Excel</span>
+          <span class="skill-tag">DAX</span>
+          <span class="skill-tag">Data Modelling</span>
+          <span class="skill-tag">Data Visualisation</span>
+          <span class="skill-tag">Statistical Analysis</span>
+          <span class="skill-tag">Window Functions</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <div class="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <div class="projects-inner">
+      <div class="projects-header">
+        <p class="section-label">Featured Work</p>
+        <h2 class="section-title">The Aqua Ndogo <span>Project</span></h2>
+        <p style="color: var(--muted); max-width: 600px; line-height: 1.7; margin-top: 0.5rem;">
+          A comprehensive end-to-end investigation into a national water crisis — spanning data exploration,
+          deep analysis, and visual storytelling across three tools.
+        </p>
+      </div>
+      <div class="project-cards">
 
-        <!-- Water Intelligence Project -->
-        <div class="bg-white rounded-2xl shadow p-8 hover:shadow-lg transition">
-            <h3 class="text-2xl font-bold mb-3">Water Infrastructure & Transparency Analytics</h3>
-            <p class="text-gray-600 mb-6">
-                End-to-end analytics project examining national water access, infrastructure reliability,
-                and public budget transparency using 60,000+ structured records.
+        <!-- Excel Card -->
+        <div class="project-card">
+          <div class="card-top excel">
+            <span class="card-icon">📊</span>
+            <span class="card-tool-badge">Excel</span>
+          </div>
+          <div class="card-body">
+            <p class="card-phase">Phase 1 · Foundation</p>
+            <h3 class="card-title">Access to Drinking Water — Global Investigation</h3>
+            <p class="card-desc">
+              Investigated global access to safe and affordable drinking water. Created features, summaries,
+              and visualisations to uncover disparities in water access across countries and regions.
             </p>
-
-            <div class="mb-6">
-                <h4 class="font-semibold mb-2">Key Contributions</h4>
-                <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
-                    <li>Designed relational SQL queries and applied window functions for infrastructure classification</li>
-                    <li>Validated audit samples to detect reporting inconsistencies</li>
-                    <li>Performed statistical checks to assess data reliability</li>
-                    <li>Built executive dashboards tracking budget vs. actual expenditure and project completion rates</li>
-                </ul>
-            </div>
-
-            <div class="mb-4">
-                <span class="text-xs bg-gray-100 px-3 py-1 rounded-full mr-2">SQL</span>
-                <span class="text-xs bg-gray-100 px-3 py-1 rounded-full mr-2">Power BI</span>
-                <span class="text-xs bg-gray-100 px-3 py-1 rounded-full mr-2">Excel</span>
-                <span class="text-xs bg-gray-100 px-3 py-1 rounded-full">Data Validation</span>
-            </div>
-
-            <a href="#" class="text-black font-semibold underline">View Full Case Study →</a>
+          </div>
+          <div class="card-footer">
+            <span class="tag">Data Cleaning</span>
+            <span class="tag">Visualisation</span>
+            <span class="tag">Summaries</span>
+          </div>
         </div>
 
-        <!-- Agriculture Analytics Project -->
-        <div class="bg-white rounded-2xl shadow p-8 hover:shadow-lg transition">
-            <h3 class="text-2xl font-bold mb-3">Agricultural Performance & Statistical Testing</h3>
-            <p class="text-gray-600 mb-6">
-                Analytical investigation into agricultural productivity, yield variation,
-                and regional performance using exploratory analysis and statistical hypothesis testing.
+        <!-- SQL Card -->
+        <div class="project-card">
+          <div class="card-top sql">
+            <span class="card-icon">🗄️</span>
+            <span class="card-tool-badge">SQL</span>
+          </div>
+          <div class="card-body">
+            <p class="card-phase">Phase 2 · Deep Analysis</p>
+            <h3 class="card-title">Uncovering Aqua Ndogo's Water Crisis</h3>
+            <p class="card-desc">
+              Explored a 60,000-record database using advanced SQL — window functions, multi-table joins,
+              and statistical analysis. Cross-referenced audit data to expose anomalies and classified
+              water sources to guide engineering teams.
             </p>
-
-            <div class="mb-6">
-                <h4 class="font-semibold mb-2">Key Contributions</h4>
-                <ul class="text-sm text-gray-600 space-y-2 list-disc list-inside">
-                    <li>Conducted exploratory data analysis to identify yield trends and anomalies</li>
-                    <li>Performed hypothesis testing (t-tests and ANOVA) to evaluate significant differences</li>
-                    <li>Built reusable Python data cleaning and validation workflows</li>
-                    <li>Delivered insight summaries to support resource allocation decisions</li>
-                </ul>
-            </div>
-
-            <div class="mb-4">
-                <span class="text-xs bg-gray-100 px-3 py-1 rounded-full mr-2">Python</span>
-                <span class="text-xs bg-gray-100 px-3 py-1 rounded-full mr-2">EDA</span>
-                <span class="text-xs bg-gray-100 px-3 py-1 rounded-full mr-2">Statistical Testing</span>
-                <span class="text-xs bg-gray-100 px-3 py-1 rounded-full">Data Cleaning</span>
-            </div>
-
-            <a href="#" class="text-black font-semibold underline">View Full Case Study →</a>
+          </div>
+          <div class="card-footer">
+            <span class="tag">Window Functions</span>
+            <span class="tag">Joins</span>
+            <span class="tag">DML</span>
+            <span class="tag">Audit Analysis</span>
+          </div>
         </div>
 
-    </div>
-</section>
+        <!-- Power BI Card -->
+        <div class="project-card">
+          <div class="card-top powerbi">
+            <span class="card-icon">📈</span>
+            <span class="card-tool-badge">Power BI</span>
+          </div>
+          <div class="card-body">
+            <p class="card-phase">Phase 3 · Visual Storytelling</p>
+            <h3 class="card-title">Transparency Dashboard — Tracking Water Funds</h3>
+            <p class="card-desc">
+              Built a relational data model and crafted a national survey report in Power BI using DAX.
+              Delivered a public transparency dashboard tracking budget vs actual costs — flagging
+              potential corruption and promoting accountability.
+            </p>
+          </div>
+          <div class="card-footer">
+            <span class="tag">DAX</span>
+            <span class="tag">Data Modelling</span>
+            <span class="tag">Dashboard</span>
+            <span class="tag">Transparency</span>
+          </div>
+        </div>
 
-<!-- Skills Section -->
-<section class="bg-white py-16 px-6">
-    <h2 class="text-3xl font-bold text-center mb-10">Technical Skills</h2>
-    <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="bg-gray-100 rounded-xl py-4">SQL</div>
-        <div class="bg-gray-100 rounded-xl py-4">Python</div>
-        <div class="bg-gray-100 rounded-xl py-4">Power BI</div>
-        <div class="bg-gray-100 rounded-xl py-4">Excel</div>
-    </div>
-</section>
+        <!-- Python Card -->
+        <div class="project-card">
+          <div class="card-top" style="background: linear-gradient(135deg, #431407 0%, #7c2d12 100%);">
+            <span class="card-icon">🐍</span>
+            <span class="card-tool-badge">Python</span>
+          </div>
+          <div class="card-body">
+            <p class="card-phase">Phase 4 · Data Engineering</p>
+            <h3 class="card-title">Aqua Ndogo Agriculture — Analysis & Pipeline</h3>
+            <p class="card-desc">
+              Used Pandas to explore Aqua Ndogo's agricultural landscape, uncovering patterns and insights
+              from the dataset. Validated data against external sources for accuracy, then built an
+              automated data pipeline to ingest and clean data at the press of a button.
+            </p>
+          </div>
+          <div class="card-footer">
+            <span class="tag">Pandas</span>
+            <span class="tag">Data Pipeline</span>
+            <span class="tag">Validation</span>
+            <span class="tag">Pattern Analysis</span>
+          </div>
+        </div>
 
-<!-- Contact Section -->
-<section id="contact" class="py-16 px-6 text-center">
-    <h2 class="text-3xl font-bold mb-4">Let’s Work Together</h2>
-    <p class="text-gray-600 mb-6">
-        Open to Data Analyst, BI Analyst, and Junior Data Scientist opportunities.
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's work <span style="color: var(--teal-light); font-style: italic;">together</span></h2>
+    <p class="contact-sub">
+      Open to data analyst roles, freelance projects, and collaborations.
+      Feel free to reach out!
     </p>
-    <a href="mailto:your.email@example.com" class="bg-black text-white px-8 py-3 rounded-2xl shadow hover:opacity-90 transition">
-        Get In Touch
-    </a>
-</section>
+    <div class="contact-links">
+      <a href="/cdn-cgi/l/email-protection#ec9583999eac89818d8580c28f8381" class="contact-link">✉️ <span class="__cf_email__" data-cfemail="c4bdabb1b684a1a9a5ada8eaa7aba9">[email&#160;protected]</span></a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">💼 LinkedIn</a>
+      <a href="https://github.com/glorygakii" target="_blank" class="contact-link">🐙 GitHub</a>
+    </div>
+  </section>
 
-</body>
-</html>
+  <!
