@@ -10,6 +10,7 @@ Some of my most meaningful work has been on the **Maji Ndogo projects**, where I
 
 I'm drawn to work that sits at the intersection of **data quality, business intelligence, and social impact**. I want to build systems that are transparent, reproducible, and grounded enough that the people relying on them can actually trust what they're seeing.  
 
+---
 
 # 📂 Projects Overview
 
