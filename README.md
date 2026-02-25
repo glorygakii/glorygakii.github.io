@@ -8,4 +8,21 @@ I work across **Python, SQL, Power BI, and Excel** not just as tools, but as dif
 
 Some of my most meaningful work has been on the **Maji Ndogo projects**, where I investigated access to safe drinking water and validated agricultural datasets. What I found rewarding wasn't just the technical side, it was knowing the analysis could contribute to something that genuinely matters to communities.  
 
-I'm drawn to work that sits at the intersection of **data quality, business intelligence, and social impact**. I want to build systems that are transparent, reproducible, and grounded enough that the people relying on them can actually trust what they're seeing.
+I'm drawn to work that sits at the intersection of **data quality, business intelligence, and social impact**. I want to build systems that are transparent, reproducible, and grounded enough that the people relying on them can actually trust what they're seeing.  
+
+
+# 📂 Projects Overview
+
+### [Access to Safe Drinking Water in Maji Ndogo: Transparency and Analytics](projects/water-access/README.md)
+Investigated water availability, affordability, and transparency in fund allocation using **Excel, SQL, and Power BI**.  
+- Queried 60,000+ records across multiple tables  
+- Applied clustering to classify water sources  
+- Built dashboards to track water funds and promote accountability  
+
+---
+
+### [Validating Agricultural Data in Maji Ndogo: Building Trust Through Python](projects/agriculture-data/README.md)
+Focused on understanding, trusting, and validating agricultural datasets using **Python and Pandas**.  
+- Built automated data pipelines for ingestion and cleaning  
+- Validated metrics against external sources  
+- Ensured reproducibility and accuracy in agricultural reporting
