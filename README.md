@@ -1,1 +1,0 @@
-glorygakii.github.io
