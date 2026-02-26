@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glory Gakii Mbiti — Data Science Portfolio</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f6f9;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin-bottom: 20px;
+      object-fit: cover;
+    }
+    nav {
+      background: #2c3e50;
+      padding: 15px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+    h2 {
+      color: #2c3e50;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #007acc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .card a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #2c3e50;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Replace profile.jpg with your actual image -->
+    <img src="images/profile.jpg" alt="Glory Gakii Mbiti">
+    <h1>Glory Gakii Mbiti</h1>
+    <p>Data Science Portfolio</p>
+  </header>
+
+  <nav>
+    <a href="#about">About Me</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="container">
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I'm Glory Gakii Mbiti — a Data Science practitioner whose path into the field started with <strong>Economics</strong>.
+        Studying Economics gave me more than theory; it taught me how to ask better questions, challenge assumptions,
+        and let data lead me to honest answers.
+      </p>
+      <p>
+        Before moving fully into data science, I worked as an <strong>Assistant HR</strong>, which gave me a deep respect for data accuracy and governance.
+        These days I work across <strong>Python, SQL, Power BI, and Excel</strong> — always focused on turning raw data into something useful and trustworthy.
+      </p>
+      <p>
+        Some of my most meaningful work has been on the <strong>Maji Ndogo projects</strong>, where I investigated access to safe drinking water
+        and validated agricultural datasets. What I found rewarding wasn't just the technical side — it was knowing the analysis
+        could contribute to something that genuinely matters to communities.
+      </p>
+      <p>
+        I'm drawn to work that sits at the intersection of <strong>data quality, business intelligence, and social impact</strong>.
+        I want to build systems that are transparent, reproducible, and grounded enough that the people relying on them can actually trust what they're seeing.
+      </p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects Overview</h2>
+      <div class="projects">
+        <div class="card">
+          <h3>Access to Safe Drinking Water</h3>
+          <p>Investigated water availability, affordability, and transparency in Maji Ndogo using SQL, Excel, and Power BI.</p>
+          <a href="projects/water-access/README.md">View Case Study</a>
+        </div>
+        <div class="card">
+          <h3>Validating Agricultural Data</h3>
+          <p>Built pipelines and Python visualizations to validate agricultural datasets and ensure reproducibility.</p>
+          <a href="projects/agriculture-data/README.md">View Case Study</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: your-email@example.com</p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile">linkedin.com/in/yourprofile</a></p>
+      <p>GitHub: <a href="https://github.com/glorygakii">github.com/glorygakii</a></p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Glory Gakii Mbiti</p>
+  </footer>
+</body>
+  </html>
