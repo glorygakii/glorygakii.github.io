@@ -1,158 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glory Gakii Mbiti — Data Science Portfolio</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      background-color: #f4f6f9;
-      color: #333;
-    }
-    header {
-      background: linear-gradient(135deg, #2c3e50, #34495e);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    header img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 4px solid white;
-      margin-bottom: 20px;
-      object-fit: cover;
-    }
-    nav {
-      background: #2c3e50;
-      padding: 15px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 20px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-    section {
-      margin-bottom: 60px;
-    }
-    h2 {
-      color: #2c3e50;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 10px;
-    }
-    .projects {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card h3 {
-      margin-top: 0;
-      color: #2c3e50;
-    }
-    .card a {
-      display: inline-block;
-      margin-top: 10px;
-      color: #007acc;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .card a:hover {
-      text-decoration: underline;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #2c3e50;
-      color: white;
-      margin-top: 40px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glory Gakii | Data Scientist & BI Analyst</title>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
 </head>
 <body>
-  <header>
-    <!-- Replace profile.jpg with your actual image -->
-    <img src="images/profile.jpg" alt="Glory Gakii Mbiti">
-    <h1>Glory Gakii Mbiti</h1>
-    <p>Data Science Portfolio</p>
-  </header>
 
-  <nav>
-    <a href="#about">About Me</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">Glory <span>Gakii</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
   </nav>
 
-  <div class="container">
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I'm Glory Gakii Mbiti — a Data Science practitioner whose path into the field started with <strong>Economics</strong>.
-        Studying Economics gave me more than theory; it taught me how to ask better questions, challenge assumptions,
-        and let data lead me to honest answers.
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Data Scientist & BI Analyst</p>
+      <h1 class="hero-title">
+        <span class="line">Turning</span>
+        <span class="line">Data Into</span>
+        <span class="line accent">Decisions.</span>
+      </h1>
+      <p class="hero-sub">
+        I build analytics pipelines, dashboards, and data stories that help organisations understand what's really happening — and what to do next.
       </p>
-      <p>
-        Before moving fully into data science, I worked as an <strong>Assistant HR</strong>, which gave me a deep respect for data accuracy and governance.
-        These days I work across <strong>Python, SQL, Power BI, and Excel</strong> — always focused on turning raw data into something useful and trustworthy.
-      </p>
-      <p>
-        Some of my most meaningful work has been on the <strong>Maji Ndogo projects</strong>, where I investigated access to safe drinking water
-        and validated agricultural datasets. What I found rewarding wasn't just the technical side — it was knowing the analysis
-        could contribute to something that genuinely matters to communities.
-      </p>
-      <p>
-        I'm drawn to work that sits at the intersection of <strong>data quality, business intelligence, and social impact</strong>.
-        I want to build systems that are transparent, reproducible, and grounded enough that the people relying on them can actually trust what they're seeing.
-      </p>
-    </section>
-
-    <section id="projects">
-      <h2>Projects Overview</h2>
-      <div class="projects">
-        <div class="card">
-          <h3>Access to Safe Drinking Water</h3>
-          <p>Investigated water availability, affordability, and transparency in Maji Ndogo using SQL, Excel, and Power BI.</p>
-          <a href="projects/water-access/README.md">View Case Study</a>
-        </div>
-        <div class="card">
-          <h3>Validating Agricultural Data</h3>
-          <p>Built pipelines and Python visualizations to validate agricultural datasets and ensure reproducibility.</p>
-          <a href="projects/agriculture-data/README.md">View Case Study</a>
-        </div>
+      <div class="hero-cta">
+        <a href="projects.html" class="btn btn-primary">View My Work</a>
+        <a href="https://github.com/glorygakii" class="btn btn-outline" target="_blank">GitHub ↗</a>
       </div>
-    </section>
+    </div>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: your-email@example.com</p>
-      <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile">linkedin.com/in/yourprofile</a></p>
-      <p>GitHub: <a href="https://github.com/glorygakii">github.com/glorygakii</a></p>
-    </section>
+    <!-- Animated bar chart visual -->
+    <div class="hero-visual">
+      <div class="bar-chart">
+        <div class="bar"></div>
+        <div class="bar active"></div>
+        <div class="bar"></div>
+        <div class="bar active"></div>
+        <div class="bar"></div>
+        <div class="bar active"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="container">
+      <div class="stat-item">
+        <span class="stat-number">2</span>
+        <span class="stat-label">End-to-End Projects</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">4+</span>
+        <span class="stat-label">Tools & Platforms</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">SQL</span>
+        <span class="stat-label">Window Functions & JOINs</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">BI</span>
+        <span class="stat-label">Power BI Dashboards</span>
+      </div>
+    </div>
   </div>
 
-  <footer>
-    <p>&copy; 2026 Glory Gakii Mbiti</p>
+  <!-- FEATURED PROJECTS -->
+  <section class="featured">
+    <div class="container">
+      <p class="section-label">Featured Work</p>
+      <h2 class="section-title">Projects Built on Real Data</h2>
+      <p class="section-subtitle">Each project tackles a real-world problem — from detecting fraud in public water funds to analysing climate impacts on agriculture.</p>
+
+      <div class="project-grid">
+
+        <article class="project-card">
+          <div class="card-badge">SQL · Power BI · Fraud Detection</div>
+          <h3>Water Funds Accountability Dashboard</h3>
+          <p>Investigated financial irregularities in Kenya's water infrastructure spending. Used SQL window functions across multiple tables to surface anomalies, then visualised findings in Power BI.</p>
+          <div class="card-tags">
+            <span>MySQL</span>
+            <span>Power BI</span>
+            <span>Window Functions</span>
+            <span>JOINs</span>
+            <span>Data Storytelling</span>
+          </div>
+          <a href="projects/water-access.html" class="card-link">View Case Study →</a>
+        </article>
+
+        <article class="project-card">
+          <div class="card-badge">Python · Excel · Agriculture</div>
+          <h3>Climate-Smart Agriculture Analytics</h3>
+          <p>Analysed crop yield data against climate variables to guide smallholder farmers in East Africa. Built a full Python pipeline from raw data ingestion through to statistical analysis and visualisation.</p>
+          <div class="card-tags">
+            <span>Python</span>
+            <span>Pandas</span>
+            <span>Matplotlib</span>
+            <span>Excel</span>
+            <span>Data Pipeline</span>
+          </div>
+          <a href="projects/agriculture-pipeline.html" class="card-link">View Case Study →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS STRIP -->
+  <section class="skills-strip">
+    <div class="container">
+      <div class="skills-track">
+        <span>SQL</span>
+        <span>Python</span>
+        <span>Power BI</span>
+        <span>Excel</span>
+        <span>MySQL</span>
+        <span>Pandas</span>
+        <span>Matplotlib</span>
+        <span>Data Cleaning</span>
+        <span>Statistical Analysis</span>
+        <span>Data Pipelines</span>
+        <span>Dashboards</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 Glory Gakii &nbsp;·&nbsp;
+      <a href="mailto:glory@glorygakii.com">glory@glorygakii.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/glorygakii" target="_blank">LinkedIn</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/glorygakii" target="_blank">GitHub</a>
+    </p>
   </footer>
+
 </body>
-  </html>
+</html>
