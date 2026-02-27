@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Climate-Smart Agriculture | Glory Gakii</title>
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">Glory <span>Gakii</span></div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../projects.html" class="active">Projects</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- PROJECT HEADER -->
+  <div class="project-header">
+    <div class="container">
+      <a href="../projects.html" class="back-link">← Back to Projects</a>
+      <div class="project-meta">
+        <span class="meta-tag highlight">Python</span>
+        <span class="meta-tag highlight">Excel</span>
+        <span class="meta-tag">Pandas</span>
+        <span class="meta-tag">Matplotlib</span>
+        <span class="meta-tag">Data Pipeline</span>
+      </div>
+      <h1 class="project-title-lg">Climate-Smart Agriculture Analytics</h1>
+    </div>
+  </div>
+
+  <!-- PROJECT CONTENT -->
+  <div class="container">
+    <div class="project-content">
+
+      <!-- MAIN CONTENT -->
+      <div class="project-main">
+
+        <h2>Problem Statement</h2>
+        <p>
+          Smallholder farmers in East Africa face increasing climate uncertainty — erratic rainfall, rising temperatures, and shifting seasons make traditional farming knowledge less reliable. This project analysed crop yield data against climate variables to identify patterns that could help farmers and agricultural planners make better decisions about what to grow, when to plant, and where to invest.
+        </p>
+
+        <h2>Approach</h2>
+        <p>
+          Starting from a raw Jupyter notebook, I built a structured Python pipeline that takes agricultural data from ingestion through to final insights. The pipeline was designed to be reproducible and transparent — each stage clearly documented so that results can be verified and trusted.
+        </p>
+        <ul>
+          <li>Loaded and validated raw agricultural datasets using Pandas</li>
+          <li>Cleaned missing values, corrected data types, and removed outliers</li>
+          <li>Performed statistical analysis to identify correlations between climate variables and crop yields</li>
+          <li>Built visualisations with Matplotlib to communicate findings clearly</li>
+          <li>Exported a summarised Excel report for non-technical stakeholders</li>
+        </ul>
+
+        <h2>Pipeline Architecture</h2>
+        <p>The pipeline follows a clean 4-stage structure:</p>
+
+        <div class="code-snippet">
+<span class="cm"># Stage 1: Data Ingestion</span>
+<span class="kw">import</span> pandas <span class="kw">as</span> pd
+df = pd.<span class="fn">read_csv</span>(<span class="str">'agriculture_data.csv'</span>)
+
+<span class="cm"># Stage 2: Data Cleaning</span>
+df.<span class="fn">dropna</span>(subset=[<span class="str">'yield_kg'</span>, <span class="str">'rainfall_mm'</span>], inplace=<span class="kw">True</span>)
+df[<span class="str">'season'</span>] = df[<span class="str">'date'</span>].<span class="fn">dt</span>.quarter
+
+<span class="cm"># Stage 3: Statistical Analysis</span>
+correlation = df[[<span class="str">'yield_kg'</span>, <span class="str">'rainfall_mm'</span>, <span class="str">'temp_avg'</span>]].<span class="fn">corr</span>()
+
+<span class="cm"># Stage 4: Export Summary</span>
+df.<span class="fn">to_excel</span>(<span class="str">'agriculture_summary.xlsx'</span>, index=<span class="kw">False</span>)
+        </div>
+
+        <h2>Screenshots</h2>
+
+        <figure class="screenshot-box">
+          <img src="../assets/images/excel-summary.png" alt="Excel summary report"/>
+          <figcaption>Excel Summary — Crop yield analysis for non-technical stakeholders</figcaption>
+        </figure>
+
+        <figure class="screenshot-box" id="python-analysis-fig">
+          <img
+            src="../assets/images/python-analysis.png"
+            alt="Python data analysis visualisations"
+            onerror="this.parentElement.style.background='#f4f4f4'; this.style.display='none'; document.getElementById('python-analysis-placeholder').style.display='block';"
+          />
+          <div id="python-analysis-placeholder" style="display:none; padding:2rem; text-align:center; color:#888; font-family:'Syne',sans-serif; font-size:0.85rem;">
+            📊 python-analysis.png — coming soon
+          </div>
+          <figcaption>Python — Statistical analysis and visualisations (Matplotlib)</figcaption>
+        </figure>
+
+        <figure class="screenshot-box">
+          <img
+            src="../assets/images/python-pipeline.png"
+            alt="Python data pipeline"
+            onerror="this.parentElement.style.background='#f4f4f4'; this.style.display='none'; document.getElementById('python-pipeline-placeholder').style.display='block';"
+          />
+          <div id="python-pipeline-placeholder" style="display:none; padding:2rem; text-align:center; color:#888; font-family:'Syne',sans-serif; font-size:0.85rem;">
+            🔧 python-pipeline.png — coming soon
+          </div>
+          <figcaption>Python — Data pipeline in Jupyter Notebook</figcaption>
+        </figure>
+
+        <h2>Results</h2>
+        <ul>
+          <li>Identified strong correlation between seasonal rainfall and maize yields across regions</li>
+          <li>Flagged temperature anomaly years where yields dropped significantly</li>
+          <li>Produced a clean Excel summary accessible to agricultural extension officers</li>
+          <li>Built a reproducible pipeline that can be rerun as new data becomes available</li>
+        </ul>
+
+        <h2>Skills Demonstrated</h2>
+        <ul>
+          <li>Python data pipeline design (Pandas, Matplotlib)</li>
+          <li>Data cleaning and validation at scale</li>
+          <li>Statistical correlation analysis</li>
+          <li>Data visualisation for storytelling</li>
+          <li>Excel reporting for non-technical audiences</li>
+          <li>Jupyter Notebook documentation</li>
+        </ul>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="project-sidebar">
+
+        <div class="sidebar-card">
+          <h4>Tools Used</h4>
+          <ul>
+            <li>Python 3</li>
+            <li>Pandas</li>
+            <li>Matplotlib</li>
+            <li>Jupyter Notebook</li>
+            <li>Excel</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card">
+          <h4>Pipeline Stages</h4>
+          <ul>
+            <li>1. Data Ingestion</li>
+            <li>2. Data Cleaning</li>
+            <li>3. Statistical Analysis</li>
+            <li>4. Visualisation</li>
+            <li>5. Excel Export</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card">
+          <h4>Links</h4>
+          <a href="https://github.com/glorygakii" target="_blank" class="sidebar-link">↗ GitHub Repository</a>
+          <a href="../assets/pdf/agriculture-report.pdf" class="sidebar-link">↓ Download Report PDF</a>
+          <a href="../projects.html" class="sidebar-link">← All Projects</a>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 Glory Gakii &nbsp;·&nbsp;
+      <a href="mailto:gakiimbiti6@gmail.com">gakiimbiti6@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/glorygakii" target="_blank">LinkedIn</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/glorygakii" target="_blank">GitHub</a>
+    </p>
+  </footer>
+
+</body>
+</html>
