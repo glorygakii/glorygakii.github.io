@@ -26,6 +26,7 @@
       <div class="project-meta">
         <span class="meta-tag highlight">SQL</span>
         <span class="meta-tag highlight">Power BI</span>
+        <span class="meta-tag highlight">Excel</span>
         <span class="meta-tag">Fraud Detection</span>
         <span class="meta-tag">Data Storytelling</span>
         <span class="meta-tag">Maji Ndogo</span>
@@ -48,60 +49,73 @@
 
         <h2>Approach</h2>
         <p>
-          Working with the <code>md_water_services</code> database in MySQL Workbench, I designed a series of SQL queries to cross-reference spending records, visit logs, and location data. The goal was to surface anomalies that wouldn't be visible in a simple report — patterns that only emerge when you look across multiple tables together.
+          Working with the <code>md_water_services</code> database in MySQL Workbench, I designed a series of SQL queries to cross-reference spending records, visit logs, and location data. The goal was to surface anomalies that wouldn't be visible in a simple report — patterns that only emerge when you look across multiple tables together. Findings were then summarised in Excel and visualised in Power BI.
         </p>
         <ul>
           <li>Joined <code>water_source</code>, <code>location</code>, and <code>visits</code> tables to build a full picture per site</li>
           <li>Used window functions to rank sources by visit frequency and flag outliers</li>
           <li>Identified employees with statistically unusual activity patterns</li>
-          <li>Calculated time-based metrics to detect irregular scheduling</li>
+          <li>Summarised findings in an Excel pivot table for stakeholder reporting</li>
+          <li>Built a Power BI dashboard to communicate patterns visually</li>
         </ul>
 
-        <h2>SQL Architecture</h2>
-        <p>The core query used a multi-table JOIN with window functions to rank water sources by number of visits and compare against expected baselines:</p>
+        <h2>SQL Analysis</h2>
+        <p>The core query used a multi-table JOIN with window functions to analyse water source distribution and detect irregularities across provinces:</p>
 
         <div class="code-snippet">
-<span class="cm">-- Ranking water sources by visit frequency per province</span>
+<span class="cm">-- Water Funds Accountability Analysis</span>
+<span class="cm">-- Skills: JOINs, Window Functions, Aggregations</span>
 <span class="kw">SELECT</span>
   l.province_name,
-  l.town_name,
+  l.location_type,
   ws.type_of_water_source,
-  v.time_in_queue,
-  <span class="fn">RANK()</span> <span class="kw">OVER</span> (
-    <span class="kw">PARTITION BY</span> l.province_name
-    <span class="kw">ORDER BY</span> v.time_in_queue <span class="kw">DESC</span>
-  ) <span class="kw">AS</span> priority_rank
+  <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total_sources,
+  <span class="fn">SUM</span>(ws.number_of_people_served) <span class="kw">AS</span> people_served,
+  <span class="fn">ROUND</span>(<span class="fn">AVG</span>(v.time_in_queue), <span class="str">0</span>) <span class="kw">AS</span> avg_wait_time_mins,
+  <span class="fn">ROUND</span>(
+    <span class="fn">SUM</span>(ws.number_of_people_served) * <span class="str">100.0</span> /
+    <span class="fn">SUM</span>(<span class="fn">SUM</span>(ws.number_of_people_served))
+    <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> l.province_name), <span class="str">2</span>
+  ) <span class="kw">AS</span> pct_of_province
 <span class="kw">FROM</span> visits v
 <span class="kw">JOIN</span> water_source ws <span class="kw">ON</span> v.source_id = ws.source_id
 <span class="kw">JOIN</span> location l <span class="kw">ON</span> v.location_id = l.location_id
-<span class="kw">WHERE</span> v.visit_count > <span class="str">1</span>;
+<span class="kw">GROUP BY</span> l.province_name, l.location_type, ws.type_of_water_source
+<span class="kw">ORDER BY</span> l.province_name, people_served <span class="kw">DESC</span>;
         </div>
 
         <h2>Screenshots</h2>
 
         <figure class="screenshot-box">
           <img src="../assets/images/sql-analysis.png" alt="SQL JOIN query with window functions in MySQL Workbench"/>
-          <figcaption>MySQL Workbench — JOIN query with window functions across water_source, location, visits tables</figcaption>
+          <figcaption>MySQL Workbench — JOIN query with window functions across water_source, location & visits tables</figcaption>
+        </figure>
+
+        <figure class="screenshot-box">
+          <img src="../assets/images/excel-summary.png" alt="Excel pivot table summary of water source data"/>
+          <figcaption>Excel Pivot Table — Water source distribution summary by province and location type</figcaption>
         </figure>
 
         <figure class="screenshot-box">
           <img src="../assets/images/dashboard.png" alt="Power BI accountability dashboard"/>
-          <figcaption>Power BI Dashboard — Water funds accountability overview</figcaption>
+          <figcaption>Power BI Dashboard — Water funds accountability overview across Maji Ndogo provinces</figcaption>
         </figure>
 
         <h2>Results</h2>
         <ul>
           <li>Identified sources with disproportionately high visit counts relative to population served</li>
           <li>Flagged employee records with irregular audit scores across multiple sites</li>
-          <li>Built a Power BI dashboard that makes the findings accessible to non-technical stakeholders</li>
+          <li>Summarised provincial water access patterns in an Excel pivot table</li>
+          <li>Built a Power BI dashboard making findings accessible to non-technical stakeholders</li>
           <li>Demonstrated how SQL window functions can be used as a fraud detection tool in public sector data</li>
         </ul>
 
         <h2>Skills Demonstrated</h2>
         <ul>
           <li>Multi-table SQL JOINs across relational database</li>
-          <li>Window functions: RANK(), PARTITION BY, ORDER BY</li>
+          <li>Window functions: SUM() OVER, PARTITION BY, ORDER BY</li>
           <li>Anomaly detection through statistical comparison</li>
+          <li>Excel pivot tables for stakeholder reporting</li>
           <li>Power BI dashboard design and data storytelling</li>
           <li>Translating technical findings for non-technical audiences</li>
         </ul>
@@ -116,6 +130,7 @@
           <ul>
             <li>MySQL Workbench</li>
             <li>Power BI</li>
+            <li>Excel (Pivot Tables)</li>
             <li>SQL Window Functions</li>
             <li>Multi-table JOINs</li>
           </ul>
