@@ -29,6 +29,7 @@
         <span class="meta-tag">Pandas</span>
         <span class="meta-tag">Matplotlib</span>
         <span class="meta-tag">Data Pipeline</span>
+        <span class="meta-tag">Maji Ndogo</span>
       </div>
       <h1 class="project-title-lg">Climate-Smart Agriculture Analytics</h1>
     </div>
@@ -38,79 +39,72 @@
   <div class="container">
     <div class="project-content">
 
-      <!-- MAIN CONTENT -->
       <div class="project-main">
 
         <h2>Problem Statement</h2>
-        <p>
-          Smallholder farmers in East Africa face increasing climate uncertainty — erratic rainfall, rising temperatures, and shifting seasons make traditional farming knowledge less reliable. This project analysed crop yield data against climate variables to identify patterns that could help farmers and agricultural planners make better decisions about what to grow, when to plant, and where to invest.
-        </p>
+        <p>Smallholder farmers in East Africa face increasing climate uncertainty — erratic rainfall, rising temperatures, and shifting seasons make traditional farming knowledge less reliable. This project analysed crop yield data against climate variables to identify patterns that could help farmers and agricultural planners make better decisions about what to grow, when to plant, and where to invest.</p>
 
         <h2>Approach</h2>
-        <p>
-          Starting from a raw Jupyter notebook, I built a structured Python pipeline that takes agricultural data from ingestion through to final insights. The pipeline was designed to be reproducible and transparent — each stage clearly documented so that results can be verified and trusted.
-        </p>
+        <p>Starting from raw agricultural data in a SQLite database, I built a structured Python pipeline that takes data from ingestion through to final insights — designed to be reproducible and transparent at every stage.</p>
         <ul>
-          <li>Loaded and validated raw agricultural datasets using Pandas</li>
-          <li>Cleaned missing values, corrected data types, and removed outliers</li>
+          <li>Loaded and validated raw agricultural datasets using Pandas and SQLAlchemy</li>
+          <li>Cleaned missing values, corrected data types, and fixed spelling errors</li>
           <li>Performed statistical analysis to identify correlations between climate variables and crop yields</li>
           <li>Built visualisations with Matplotlib to communicate findings clearly</li>
           <li>Exported a summarised Excel report for non-technical stakeholders</li>
         </ul>
 
         <h2>Pipeline Architecture</h2>
-        <p>The pipeline follows a clean 4-stage structure:</p>
-
         <div class="code-snippet">
-<span class="cm"># Stage 1: Data Ingestion</span>
-<span class="kw">import</span> pandas <span class="kw">as</span> pd
-df = pd.<span class="fn">read_csv</span>(<span class="str">'agriculture_data.csv'</span>)
+<span class="cm"># Data Ingestion & Pipeline Architecture</span>
+<span class="kw">def</span> <span class="fn">create_db_engine</span>(db_path):
+    <span class="str">"""Creates and returns a SQLAlchemy database engine."""</span>
+    engine = create_engine(db_path)
+    <span class="kw">return</span> engine
 
-<span class="cm"># Stage 2: Data Cleaning</span>
-df.<span class="fn">dropna</span>(subset=[<span class="str">'yield_kg'</span>, <span class="str">'rainfall_mm'</span>], inplace=<span class="kw">True</span>)
-df[<span class="str">'season'</span>] = df[<span class="str">'date'</span>].<span class="fn">dt</span>.quarter
+<span class="kw">def</span> <span class="fn">query_data</span>(engine, sql_query):
+    <span class="str">"""Queries the database and returns a DataFrame."""</span>
+    <span class="kw">with</span> engine.<span class="fn">connect</span>() <span class="kw">as</span> connection:
+        df = pd.<span class="fn">read_sql_query</span>(<span class="fn">text</span>(sql_query), connection)
+        <span class="kw">return</span> df
 
-<span class="cm"># Stage 3: Statistical Analysis</span>
-correlation = df[[<span class="str">'yield_kg'</span>, <span class="str">'rainfall_mm'</span>, <span class="str">'temp_avg'</span>]].<span class="fn">corr</span>()
+<span class="kw">def</span> <span class="fn">read_from_web_CSV</span>(URL):
+    <span class="str">"""Reads a CSV file from a web URL into a DataFrame."""</span>
+    df = pd.<span class="fn">read_csv</span>(URL)
+    <span class="kw">return</span> df
 
-<span class="cm"># Stage 4: Export Summary</span>
-df.<span class="fn">to_excel</span>(<span class="str">'agriculture_summary.xlsx'</span>, index=<span class="kw">False</span>)
+<span class="cm"># Run the full pipeline</span>
+field_df   = <span class="fn">query_data</span>(<span class="fn">create_db_engine</span>(config_params[<span class="str">'db_path'</span>]),
+                        config_params[<span class="str">'sql_query'</span>])
+weather_df = <span class="fn">read_from_web_CSV</span>(config_params[<span class="str">'weather_csv_path'</span>])
         </div>
 
         <h2>Screenshots</h2>
 
         <figure class="screenshot-box">
-          <img src="../assets/images/excel-summary.png" alt="Excel summary report"/>
-          <figcaption>Excel Summary — Crop yield analysis for non-technical stakeholders</figcaption>
-        </figure>
-
-        <figure class="screenshot-box" id="python-analysis-fig">
-          <img
-            src="../assets/images/python-analysis.png"
-            alt="Python data analysis visualisations"
-            onerror="this.parentElement.style.background='#f4f4f4'; this.style.display='none'; document.getElementById('python-analysis-placeholder').style.display='block';"
-          />
-          <div id="python-analysis-placeholder" style="display:none; padding:2rem; text-align:center; color:#888; font-family:'Syne',sans-serif; font-size:0.85rem;">
-            📊 python-analysis.png — coming soon
-          </div>
-          <figcaption>Python — Statistical analysis and visualisations (Matplotlib)</figcaption>
+          <img src="../assets/images/python-pipeline.png" alt="Python data pipeline in Jupyter Notebook"
+               onerror="this.parentElement.style.background='#f4f4f4'; this.style.display='none'; document.getElementById('pip-ph').style.display='block'"/>
+          <div id="pip-ph" style="display:none; padding:2rem; text-align:center; color:#888; font-family:'Syne',sans-serif; font-size:0.85rem;">📊 python-pipeline.png — coming soon</div>
+          <figcaption>Jupyter Notebook — Modular data ingestion pipeline functions</figcaption>
         </figure>
 
         <figure class="screenshot-box">
-          <img
-            src="../assets/images/python-pipeline.png"
-            alt="Python data pipeline"
-            onerror="this.parentElement.style.background='#f4f4f4'; this.style.display='none'; document.getElementById('python-pipeline-placeholder').style.display='block';"
-          />
-          <div id="python-pipeline-placeholder" style="display:none; padding:2rem; text-align:center; color:#888; font-family:'Syne',sans-serif; font-size:0.85rem;">
-            🔧 python-pipeline.png — coming soon
-          </div>
-          <figcaption>Python — Data pipeline in Jupyter Notebook</figcaption>
+          <img src="../assets/images/python-analysis.png" alt="Python statistical analysis and visualisations"
+               onerror="this.parentElement.style.background='#f4f4f4'; this.style.display='none'; document.getElementById('ana-ph').style.display='block'"/>
+          <div id="ana-ph" style="display:none; padding:2rem; text-align:center; color:#888; font-family:'Syne',sans-serif; font-size:0.85rem;">📊 python-analysis.png — coming soon</div>
+          <figcaption>Python — Statistical analysis and Matplotlib visualisations</figcaption>
+        </figure>
+
+        <figure class="screenshot-box">
+          <img src="../assets/images/agriculture-excel.png" alt="Excel summary report for agriculture project"
+               onerror="this.parentElement.style.background='#f4f4f4'; this.style.display='none'; document.getElementById('exc-ph').style.display='block'"/>
+          <div id="exc-ph" style="display:none; padding:2rem; text-align:center; color:#888; font-family:'Syne',sans-serif; font-size:0.85rem;">📊 agriculture-excel.png — coming soon</div>
+          <figcaption>Excel — Crop yield and climate summary exported from Python</figcaption>
         </figure>
 
         <h2>Results</h2>
         <ul>
-          <li>Identified strong correlation between seasonal rainfall and maize yields across regions</li>
+          <li>Identified strong correlation between seasonal rainfall and crop yields across regions</li>
           <li>Flagged temperature anomaly years where yields dropped significantly</li>
           <li>Produced a clean Excel summary accessible to agricultural extension officers</li>
           <li>Built a reproducible pipeline that can be rerun as new data becomes available</li>
@@ -118,7 +112,7 @@ df.<span class="fn">to_excel</span>(<span class="str">'agriculture_summary.xlsx'
 
         <h2>Skills Demonstrated</h2>
         <ul>
-          <li>Python data pipeline design (Pandas, Matplotlib)</li>
+          <li>Python data pipeline design (Pandas, SQLAlchemy, Matplotlib)</li>
           <li>Data cleaning and validation at scale</li>
           <li>Statistical correlation analysis</li>
           <li>Data visualisation for storytelling</li>
@@ -130,18 +124,17 @@ df.<span class="fn">to_excel</span>(<span class="str">'agriculture_summary.xlsx'
 
       <!-- SIDEBAR -->
       <aside class="project-sidebar">
-
         <div class="sidebar-card">
           <h4>Tools Used</h4>
           <ul>
             <li>Python 3</li>
             <li>Pandas</li>
             <li>Matplotlib</li>
+            <li>SQLAlchemy</li>
             <li>Jupyter Notebook</li>
             <li>Excel</li>
           </ul>
         </div>
-
         <div class="sidebar-card">
           <h4>Pipeline Stages</h4>
           <ul>
@@ -152,20 +145,17 @@ df.<span class="fn">to_excel</span>(<span class="str">'agriculture_summary.xlsx'
             <li>5. Excel Export</li>
           </ul>
         </div>
-
         <div class="sidebar-card">
           <h4>Links</h4>
           <a href="https://github.com/glorygakii" target="_blank" class="sidebar-link">↗ GitHub Repository</a>
           <a href="../assets/pdf/agriculture-report.pdf" class="sidebar-link">↓ Download Report PDF</a>
           <a href="../projects.html" class="sidebar-link">← All Projects</a>
         </div>
-
       </aside>
 
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <p>© 2025 Glory Gakii &nbsp;·&nbsp;
       <a href="mailto:gakiimbiti6@gmail.com">gakiimbiti6@gmail.com</a>
