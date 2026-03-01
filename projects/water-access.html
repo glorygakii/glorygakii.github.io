@@ -39,18 +39,13 @@
   <div class="container">
     <div class="project-content">
 
-      <!-- MAIN CONTENT -->
       <div class="project-main">
 
         <h2>Problem Statement</h2>
-        <p>
-          Millions of people in Kenya lack access to safe drinking water. But beyond the infrastructure gap, there's another problem: funds allocated for water projects don't always reach their intended purpose. This project investigated financial irregularities in the <strong>Maji Ndogo</strong> water infrastructure dataset — looking for patterns that could indicate fraud, misallocation, or corruption in public spending.
-        </p>
+        <p>Millions of people in Kenya lack access to safe drinking water. But beyond the infrastructure gap, there's another problem: funds allocated for water projects don't always reach their intended purpose. This project investigated financial irregularities in the <strong>Maji Ndogo</strong> water infrastructure dataset — looking for patterns that could indicate fraud, misallocation, or corruption in public spending.</p>
 
         <h2>Approach</h2>
-        <p>
-          Working with the <code>md_water_services</code> database in MySQL Workbench, I designed a series of SQL queries to cross-reference spending records, visit logs, and location data. The goal was to surface anomalies that wouldn't be visible in a simple report — patterns that only emerge when you look across multiple tables together. Findings were then summarised in Excel and visualised in Power BI.
-        </p>
+        <p>Working with the <code>md_water_services</code> database in MySQL Workbench, I designed SQL queries to cross-reference spending records, visit logs, and location data. Findings were summarised in an Excel pivot table and visualised in Power BI.</p>
         <ul>
           <li>Joined <code>water_source</code>, <code>location</code>, and <code>visits</code> tables to build a full picture per site</li>
           <li>Used window functions to rank sources by visit frequency and flag outliers</li>
@@ -60,8 +55,6 @@
         </ul>
 
         <h2>SQL Analysis</h2>
-        <p>The core query used a multi-table JOIN with window functions to analyse water source distribution and detect irregularities across provinces:</p>
-
         <div class="code-snippet">
 <span class="cm">-- Water Funds Accountability Analysis</span>
 <span class="cm">-- Skills: JOINs, Window Functions, Aggregations</span>
@@ -87,12 +80,12 @@
         <h2>Screenshots</h2>
 
         <figure class="screenshot-box">
-          <img src="../assets/images/sql-analysis.png" alt="SQL JOIN query with window functions in MySQL Workbench"/>
+          <img src="../assets/images/sql-analysis.png" alt="SQL analysis in MySQL Workbench"/>
           <figcaption>MySQL Workbench — JOIN query with window functions across water_source, location & visits tables</figcaption>
         </figure>
 
         <figure class="screenshot-box">
-          <img src="../assets/images/excel-summary.png" alt="Excel pivot table summary of water source data"/>
+          <img src="../assets/images/water-excel.png" alt="Excel pivot table for water project"/>
           <figcaption>Excel Pivot Table — Water source distribution summary by province and location type</figcaption>
         </figure>
 
@@ -117,14 +110,12 @@
           <li>Anomaly detection through statistical comparison</li>
           <li>Excel pivot tables for stakeholder reporting</li>
           <li>Power BI dashboard design and data storytelling</li>
-          <li>Translating technical findings for non-technical audiences</li>
         </ul>
 
       </div>
 
       <!-- SIDEBAR -->
       <aside class="project-sidebar">
-
         <div class="sidebar-card">
           <h4>Tools Used</h4>
           <ul>
@@ -132,33 +123,28 @@
             <li>Power BI</li>
             <li>Excel (Pivot Tables)</li>
             <li>SQL Window Functions</li>
-            <li>Multi-table JOINs</li>
           </ul>
         </div>
-
         <div class="sidebar-card">
-          <h4>Database</h4>
+          <h4>Database Tables</h4>
           <ul>
             <li>md_water_services</li>
-            <li>water_source table</li>
-            <li>location table</li>
-            <li>visits table</li>
+            <li>water_source</li>
+            <li>location</li>
+            <li>visits</li>
           </ul>
         </div>
-
         <div class="sidebar-card">
           <h4>Links</h4>
           <a href="https://github.com/glorygakii" target="_blank" class="sidebar-link">↗ GitHub Repository</a>
           <a href="../assets/pdf/water-access-report.pdf" class="sidebar-link">↓ Download Report PDF</a>
           <a href="../projects.html" class="sidebar-link">← All Projects</a>
         </div>
-
       </aside>
 
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <p>© 2025 Glory Gakii &nbsp;·&nbsp;
       <a href="mailto:gakiimbiti6@gmail.com">gakiimbiti6@gmail.com</a>
